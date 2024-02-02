@@ -1,12 +1,14 @@
 const express = require("express");
 
-const controllers = require("../../controllers/auth")
+const controllers = require("../../controllers/auth");
+const { validateBody } = require("../../middlewares");
+const { userJoiSchemas } = require("../../models/user");
 
 const router = express.Router()
 
-router.post("/signup", controllers.signup)
+router.post("/signup", validateBody(userJoiSchemas.signup), controllers.signup)
 
-router.post("/signin", controllers.signin)
+router.post("/signin", validateBody(userJoiSchemas.signin) , controllers.signin)
 
 // router.post("/signout", controllers.signout)
 

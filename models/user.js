@@ -31,8 +31,14 @@ const singupSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const signinSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required(),
+  password: Joi.string().min(6).required(),
+})
+
 const userJoiSchemas = {
   singupSchema,
+  signinSchema,
 };
 
 const User = model("user", userSchema);
