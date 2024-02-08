@@ -29,11 +29,12 @@ const forgotPassword = async (req, res) => {
         message: "New password was sent to your email",
       });
     })
-    // .catch((error) => {
-    //   res.status(500).json({
-    //     message: "Internal Server Error",
-    //   });
-    // });
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({
+        message: "Internal Server Error",
+      });
+    });
 };
 
 module.exports = forgotPassword;

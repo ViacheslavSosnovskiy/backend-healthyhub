@@ -97,9 +97,34 @@ const signinSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const emailSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required()
+})
+
+const updateUserInfoSchema = Joi.object({
+  name: Joi.string(),
+  age: Joi.number().min(8).max(120),
+  weight: Joi.number().min(20).max(300),
+  height: Joi.number().min(120).max(220),
+  gender: Joi.string().valid(...genders),
+  coefficientsOfActivity: Joi.number().valid(...coefficientsOfActivity)
+})
+
+const updateUserGoalSchema = Joi.object({
+  goal: Joi.string().valid(...goals).required()
+})
+
+const addUserWeightSchema = Joi.object({
+  weight: Joi.number().min(20).max(300).required()
+})
+
 const userJoiSchemas = {
   singupSchema,
   signinSchema,
+  emailSchema,
+  updateUserInfoSchema,
+  updateUserGoalSchema,
+  addUserWeightSchema,
 };
 
 const User = model("user", userSchema);
